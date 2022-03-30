@@ -31,8 +31,9 @@ const inprogressTask = async(req,res) =>{
 const completedTask = async(req,res) =>{
     const query = Task.find({completed:true});
     query.select();
-    query.limit(10);
     query.sort({ completedtime: -1 });
+    query.limit(10);
+    
 
     query.exec((err, result) => {
         res.send(result);
