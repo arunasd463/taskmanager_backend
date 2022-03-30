@@ -19,8 +19,17 @@ app.use(express.json());
 //routes
 app.use('/api/',tasks)
 
+app.get('/',(req,res)=>{
+    res.send("Hello !")
+})
 
-const port = 8000;
+app.get('*',(req,res)=>{
+    res.status(404).send("Not Found")
+})
+
+const port = process.env.PORT || 5000
+// const port = 5000
+
 const start = async () =>{
     try{
         await connectDB(process.env.MONGO_URI)
